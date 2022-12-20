@@ -1,10 +1,12 @@
 import db from '../models/index'
 import bcrypt from 'bcryptjs'
 const crypto = require("crypto");
+import setTZ from 'set-tz';
+
 const { Sequelize, Op } = require("sequelize");
 import emailService from './emailService'
 const salt = bcrypt.genSaltSync(10);
-
+setTZ('Asia/Bangkok')
 let handleUserLogin =(email,password)=>{
     return new Promise(async(resolve,reject)=>{
         try {
@@ -272,9 +274,9 @@ let getValueSensor =(type,value)=>{
 let createNewValueSensor =(data) =>{
     return new Promise(async(resolve,reject)=>{
         try {
-            let date_ob = new Date().toLocaleString('en-US', {
-                timeZone: 'Asia/Ho_Chi_Minh'
-              });;
+        
+            let date_ob = new Date()
+            console.log(date_ob)
             let day = ("0" + date_ob.getDate()).slice(-2);
             let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
             let year = date_ob.getFullYear();
