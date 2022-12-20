@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     temperature: DataTypes.STRING,
     humidity: DataTypes.STRING,
     date: DataTypes.DATEONLY,
-    time: DataTypes.TIME,
+    time: DataTypes.STRING,
     locationID: DataTypes.INTEGER,
     userID: DataTypes.INTEGER,
   }, {

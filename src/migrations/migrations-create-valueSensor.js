@@ -18,7 +18,7 @@ module.exports = {
                 type: Sequelize.DATEONLY
             },
             time: {
-                type: Sequelize.TIME
+                type: Sequelize.STRING
             },
             locationID: {
                 type: Sequelize.INTEGER
