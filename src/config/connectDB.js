@@ -19,6 +19,13 @@ const sequelize = new Sequelize(
     }
 });
 
+// const sequelize = new Sequelize('api_coolroom', 'root', null, {
+//   dialect: 'mysql',
+//   dialectOptions: {
+//     // Your mysql2 options here
+//   }
+// })
+
 let connectDB = async()=> {
     try {
         await sequelize.authenticate();

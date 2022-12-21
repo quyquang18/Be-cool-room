@@ -253,12 +253,11 @@ let getValueSensor =(type,value)=>{
                 values =await db.valueSensor.findAll({
                     where:{date:value},
                 })
-                console.log(values)
+                console.log(values.date)
             }
             if(type==='month'){
                 values = await db.valueSensor.findAll({
-                    where: Sequelize.where(Sequelize.fn("MONTH", Sequelize.col("date")), value),
-                    order: ['date'],
+                    where: Sequelize.fn('EXTRACT(MONTH from "date") =', value)
                  });
             }
             resolve({

@@ -30,7 +30,12 @@ sequelize = new Sequelize(
   process.env.DB_PASSWORD, 
   custumizeConfig
   );
-
+// const sequelize = new Sequelize('api_coolroom', 'root', null, {
+//   dialect: 'mysql',
+//   dialectOptions: {
+//     // Your mysql2 options here
+//   }
+// })
 fs
   .readdirSync(__dirname)
   .filter(file => {
