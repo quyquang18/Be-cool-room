@@ -3,18 +3,21 @@ const nodemailer = require("nodemailer");
 
 let sendSimpleEmail =async(dataSend)=>{
     let transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
-        secure: false, // true for 465, false for other ports
-        auth: {
-          user: process.env.EMAIL_APP, // generated ethereal user
-          pass: process.env.EMAIL_APP_PASSWORD, // generated ethereal password
-        },
-      });
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true, // true for 465, false for other ports
+      auth: {
+        user: process.env.EMAIL_APP, // generated ethereal user
+        pass: process.env.EMAIL_APP_PASSWORD, // generated ethereal password
+      },
+      tls: {
+        rejectUnauthorized: false
+      }
+    });
     
       // send mail with defined transport object
       let info = await transporter.sendMail({
-        from: '"Noname 👻" <noreply@example.com>', // sender address
+        from: '"Noname 👻" <quyquanght18@gmail.com>', // sender address
         to: dataSend.receiverEmail , // list of receivers
         subject: "Verify Email ✔", // Subject line
         html: `
@@ -26,21 +29,22 @@ let sendSimpleEmail =async(dataSend)=>{
           <br>Tên đăng nhập : ${dataSend.username}<br>
           Mật khẩu : không hiển thị vì lý do bảo mật<br>
         </div>
-        
         <div style="color:black;background-color:#f47346;font-weight:700;font-size:18px;padding:12px 22px;text-align:center;margin:12px 60px"> 
-        <a href="${dataSend.url}" target="_blank" style="text-decoration:none;" > 👉 Ấn vào đây để xác nhận</a>
+        <p>Click <a href=${dataSend.url}>vào đây</a> để xác nhận</p>
         </div>
         <div>Nếu bạn không phải bạn vui lòng bỏ qua Email này</div>
-        <div style="margin:22px 0">Xin trân trọng cảm ơn.</div>
+        <div style
+        ="margin:22px 0">Xin trân trọng cảm ơn.</div>
         
         </div> `, // html body
       });
+      console.log(info)
 }
 let sendEmailWarning =async(dataSend)=>{
   let transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
-      port: 587,
-      secure: false, // true for 465, false for other ports
+      port: 465,
+      secure: true, // true for 465, false for other ports
       auth: {
         user: process.env.EMAIL_APP, // generated ethereal user
         pass: process.env.EMAIL_APP_PASSWORD, // generated ethereal password

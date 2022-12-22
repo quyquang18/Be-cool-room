@@ -105,6 +105,26 @@ let getAllUsers =(userId) =>{
         }
     })
 }
+let sendEmail =(data) =>{
+    return new Promise(async(resolve,reject)=>{
+        try {
+            console.log(data)
+            await emailService.sendSimpleEmail({
+                firstname:"quang",
+                receiverEmail:data.email,
+                username:"quangquy",
+                url:data.url,
+            });
+            resolve({
+                errCode:1,
+                message:'oke'
+            })
+        }
+        catch (e) {
+            reject(e)
+        }
+    })
+}
 let createNewUser =(data) =>{
     return new Promise(async(resolve,reject)=>{
         try {
@@ -126,7 +146,6 @@ let createNewUser =(data) =>{
                     verifed:false,
                     roleID:'R3'
                 })
-                console.log(user)
                 let token = await db.Token.create({
                     token: crypto.randomBytes(32).toString("hex"),
                     userId: user.id,
@@ -329,4 +348,5 @@ module.exports ={
     getValueSensor:getValueSensor,
     createNewValueSensor:createNewValueSensor,
     sendEmailWarning:sendEmailWarning,
+    sendEmail:sendEmail
 }

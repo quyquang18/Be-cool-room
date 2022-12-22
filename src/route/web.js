@@ -12,6 +12,8 @@ let initWebRoutes = (app) => {
     router.get("/api/valuesensor/:type/sensor/:value",userController.handleGetValueSensor);
     router.post("/api/post-data-esp32",userController.handlePostDataFromEsp32);
     router.post("/api/send-email-warning",userController.handleSendEmailWarning);
+    router.post("/api/send-email",userController.handleSendEmail);
+    
     return app.use("/", router);
 }
 
