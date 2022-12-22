@@ -151,7 +151,7 @@ let createNewUser =(data) =>{
                     userId: user.id,
                 });
                 
-                const url = `${process.env.BASE_URL}cool-room/client/verify-email.html?iduser=${user.id}&&token=${token.token}`;
+                const url = `${process.env.BASE_URL}?iduser=${user.id}&&token=${token.token}`;
                 console.log(url)
                 await emailService.sendSimpleEmail({
                     firstname:data.firstname,
