@@ -143,25 +143,25 @@ let createNewUser =(data) =>{
                     username:data.username,
                     password:hashPasswordFromBcrypt,
                     phonenumber:data.phonenumber,
-                    verifed:false,
+                    verifed:true,
                     roleID:'R3'
                 })
-                let token = await db.Token.create({
-                    token: crypto.randomBytes(32).toString("hex"),
-                    userId: user.id,
-                });
+                // let token = await db.Token.create({
+                //     token: crypto.randomBytes(32).toString("hex"),
+                //     userId: user.id,
+                // });
                 
-                const url = `${process.env.BASE_URL}?iduser=${user.id}&&token=${token.token}`;
-                console.log(url)
-                await emailService.sendSimpleEmail({
-                    firstname:data.firstname,
-                    receiverEmail:data.email,
-                    username:data.username,
-                    url:url,
-                });
+                // const url = `${process.env.BASE_URL}?iduser=${user.id}&&token=${token.token}`;
+                // console.log(url)
+                // await emailService.sendSimpleEmail({
+                //     firstname:data.firstname,
+                //     receiverEmail:data.email,
+                //     username:data.username,
+                //     url:url,
+                // });
                 resolve({
                     errCode:0,
-                    message:'Successful registration.An email has been sent to your account, please verify'
+                    message:'Successful registration.'
                 })
             }
             
